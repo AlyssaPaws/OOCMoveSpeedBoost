@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <!--Notification Messages-->
+    <OOCMSB.Message.SpeedBoostDisabled>Disabled move speed multiplier</OOCMSB.Message.SpeedBoostDisabled>
+    <OOCMSB.Message.SpeedBoostReEnabled>Re-enabled move speed multiplier</OOCMSB.Message.SpeedBoostReEnabled>
+    
+    <!--SettingsCategory-->
+    <OOCMSB.Title>Out Of Combat Move Speed Boost</OOCMSB.Title>
+    <!--Settings-->
+    <OOCMSB.NonCombatSpeedMult.Label>Non-Combat Speed Multiplier</OOCMSB.NonCombatSpeedMult.Label>
+    <OOCMSB.NonCombatSpeedMult.TT>All pawns movement speed will be multiplied by this when there are no threats detected on any map. Includes animals.</OOCMSB.NonCombatSpeedMult.TT>
+    <OOCMSB.ShowBoostToggle.Label>Show Speed Boost Toggle</OOCMSB.ShowBoostToggle.Label>
+    <OOCMSB.ShowBoostToggle.TT>When active there will be a speed boost toggle button in the widget bar on the bottom right of the screen.</OOCMSB.ShowBoostToggle.TT>
+    <OOCMSB.ManualReactivation.Label>Manual Reactivation</OOCMSB.ManualReactivation.Label>
+    <OOCMSB.ManualReactivation.TT>When the speed boost is automatically cancelled it will remain toggled off until it is manually reactivated.</OOCMSB.ManualReactivation.TT>
+    <OOCMSB.DraftedDisable.Label>Disable When Drafted</OOCMSB.DraftedDisable.Label>
+    <OOCMSB.DraftedDisable.TT>The boost will automatically cancel itself when any of your pawns are drafted, and resume a few seconds after there are no threats on the map and all of your pawns have been undrafted.</OOCMSB.DraftedDisable.TT>
+    <OOCMSB.OnOffNotification.Label>Enable Notification</OOCMSB.OnOffNotification.Label>
+    <OOCMSB.OnOffNotification.TT>When enabled will notify you when the effect gets disabled and re-enabled.</OOCMSB.OnOffNotification.TT>
+    
+    <!--Widget button Tooltip-->
+    <OOCMSB.BoostToggle.Tooltip>Toggle out of combat speed boost. When there are no threats on any active map all pawns will move {0} times faster.</OOCMSB.BoostToggle.Tooltip>
+</LanguageData>

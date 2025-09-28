@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+	<KeyBindingCategoryDef>
+		<defName>MUR_OOCSpeedBoost</defName>
+		<label>Toggle OOC Speed boost effect</label>
+		<description>A shortcut that toggles the out of combat move speed effect.</description>
+	</KeyBindingCategoryDef>
+</Defs>

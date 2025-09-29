@@ -1,7 +1,7 @@
 # Out Of Combat Move Speed Boost (Continued)
 A Rimworld mod that applies a configurable move speed multiplier to all pawns when outside of combat. 
 
-Originally created by Murmur. The original mod can be found [here](https://steamcommunity.com/sharedfiles/filedetails/?id=2146654275) (which appears to have been unlisted). 
+Originally created by Murmur. The original mod can be found [here](https://steamcommunity.com/sharedfiles/filedetails/?id=2146654275).
 
 maintained (and improved) with 1.6 and onwards by AlyssaPaws.
 
@@ -28,4 +28,4 @@ Settings
 
 Suggestions and bug reports are welcome.
 
-For more information, see the steam workshop page (insert link here)
+For more information, see the [steam workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3577027123)

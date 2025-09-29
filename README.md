@@ -28,4 +28,4 @@ Settings
 
 Suggestions and bug reports are welcome.
 
-For more information, see the steam workshop page (insert link here)
+For more information, see the [steam workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3577027123)

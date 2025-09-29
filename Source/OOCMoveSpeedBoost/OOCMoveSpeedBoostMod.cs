@@ -5,11 +5,11 @@ using Verse;
 #nullable disable
 namespace OOCMoveSpeedBoost;
 
-public class OOCMoveSpeedBoost_Mod : Mod
+public class OOCMoveSpeedBoostMod : Mod
 {
     public static Settings settings;
 
-    public OOCMoveSpeedBoost_Mod(ModContentPack content) : base(content)
+    public OOCMoveSpeedBoostMod(ModContentPack content) : base(content)
     {
         settings = GetSettings<Settings>();
     }

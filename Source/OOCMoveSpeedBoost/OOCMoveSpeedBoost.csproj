@@ -26,7 +26,7 @@
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
+        <DebugType>none</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\OOCMoveSpeedBoost_Dev\1.6\Assemblies</OutputPath>
         <DefineConstants>TRACE</DefineConstants>

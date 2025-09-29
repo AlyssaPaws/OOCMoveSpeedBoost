@@ -19,7 +19,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\OOCMoveSpeedBoost_Dev\1.6\Assemblies</OutputPath>
+        <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\OOCMoveSpeedBoost\1.6\Assemblies</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>none</DebugType>
         <Optimize>true</Optimize>
-        <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\OOCMoveSpeedBoost_Dev\1.6\Assemblies</OutputPath>
+        <OutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\OOCMoveSpeedBoost\1.6\Assemblies</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>

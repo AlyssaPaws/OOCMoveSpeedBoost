@@ -19,5 +19,5 @@
     <OOCMSB.OnOffNotification.TT>When enabled will notify you when the effect gets disabled and re-enabled.</OOCMSB.OnOffNotification.TT>
     
     <!--Widget button Tooltip-->
-    <OOCMSB.BoostToggle.Tooltip>Toggle out of combat speed boost. When there are no threats on any active map all pawns will move {0} times faster.</OOCMSB.BoostToggle.Tooltip>
+    <OOCMSB.BoostToggle.Tooltip>Toggle out of combat speed boost. \n\nWhen there are no threats on any active map all pawns will move {0} times faster.</OOCMSB.BoostToggle.Tooltip>
 </LanguageData>

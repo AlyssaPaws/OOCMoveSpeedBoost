@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ModMetaData>
-    <name>Out of Combat Move Speed Boost</name>
+    <name>Out of Combat Move Speed Boost (Continued)</name>
     <author>Murmur, AlyssaPaws</author>
     <packageId>alyssapaws.oocmovespeedboost</packageId>
     <description>Makes all pawns move faster outside of combat with a configurable multiplier.\nOriginally created by Murmur, maintained by AlyssaPaws</description>

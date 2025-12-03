@@ -1,11 +1,12 @@
-﻿using Verse;
+﻿using System.Linq;
+using Verse;
 
 #nullable disable
 namespace OOCMoveSpeedBoost;
 
 public class CombatChecker : GameComponent
 {
-    private int checkCombatTicks = MainController.checkCombatTicks;
+    private int _checkCombatTicks = MainController.checkCombatTicks;
 
     public CombatChecker(Game game)
     {
@@ -14,7 +15,7 @@ public class CombatChecker : GameComponent
     public override void LoadedGame()
     {
         base.LoadedGame();
-        if (!this.NotSafeToBoost())
+        if (!NotSafeToBoost())
             return;
         MainController.ForceSlow();
     }
@@ -26,18 +27,17 @@ public class CombatChecker : GameComponent
             return;
         if (MainController.refreshTicks)
         {
-            this.checkCombatTicks = MainController.checkCombatTicks;
+            _checkCombatTicks = MainController.checkCombatTicks;
             MainController.refreshTicks = false;
         }
 
-        --this.checkCombatTicks;
-        if (this.checkCombatTicks <= 0)
-        {
-            this.checkCombatTicks = MainController.checkCombatTicks;
-            if (this.NotSafeToBoost())
-                return;
-            MainController.Resume();
-        }
+        --_checkCombatTicks;
+        if (_checkCombatTicks > 0) return;
+        
+        _checkCombatTicks = MainController.checkCombatTicks;
+        if (NotSafeToBoost())
+            return;
+        MainController.Resume();
     }
 
     private bool NotSafeToBoost()
@@ -46,13 +46,10 @@ public class CombatChecker : GameComponent
         {
             if (CustomGenHostility.AnyHostileActiveThreatToPlayer(map))
                 return true;
-            if (Settings.disableWhenDrafted)
+            if (!Settings.disableWhenDrafted) continue;
+            if (Enumerable.Any(map.mapPawns.FreeColonistsSpawned, pawn => pawn.Drafted))
             {
-                foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned)
-                {
-                    if (pawn.Drafted)
-                        return true;
-                }
+                return true;
             }
         }
 
@@ -63,6 +60,6 @@ public class CombatChecker : GameComponent
     {
         if (!MainController.inCombat)
             return;
-        this.checkCombatTicks = MainController.checkCombatTicks;
+        _checkCombatTicks = MainController.checkCombatTicks;
     }
 }

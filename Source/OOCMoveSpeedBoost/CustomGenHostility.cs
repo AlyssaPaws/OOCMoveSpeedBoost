@@ -22,25 +22,21 @@ public static class CustomGenHostility
     {
         foreach (IAttackTarget target in map.attackTargetsCache.TargetsHostileToFaction(faction))
         {
-            if (countSolitaryInsectsAsHostile || !(target is Pawn p) || !p.RaceProps.Insect || p.GetLord() != null)
-            {
-                if (IsActiveThreatTo(target, faction))
-                {
-                    threat = target;
-                    return true;
-                }
+            if (!countSolitaryInsectsAsHostile && target is Pawn p && p.RaceProps.Insect &&
+                p.GetLord() == null) continue;
 
-                if (countDormantPawnsAsHostile && target.Thing.HostileTo(faction) && !target.Thing.Fogged() &&
-                    !target.ThreatDisabled((IAttackTargetSearcher)null) && target.Thing is Pawn thing)
-                {
-                    CompCanBeDormant comp = thing.GetComp<CompCanBeDormant>();
-                    if (comp != null && !comp.Awake)
-                    {
-                        threat = target;
-                        return true;
-                    }
-                }
+            if (!IsActiveThreatTo(target, faction))
+            {
+                if (!countDormantPawnsAsHostile || !target.Thing.HostileTo(faction) || target.Thing.Fogged() ||
+                    target.ThreatDisabled((IAttackTargetSearcher)null) || target.Thing is not Pawn thing) continue;
+
+                CompCanBeDormant comp = thing.GetComp<CompCanBeDormant>();
+
+                if (comp is not { Awake: false }) continue;
             }
+
+            threat = target;
+            return true;
         }
 
         threat = (IAttackTarget)null;
@@ -55,29 +51,24 @@ public static class CustomGenHostility
             return false;
 
         Lord lord = targetPawn?.GetLord();
-        if (lord != null && lord.LordJob is LordJob_DefendAndExpandHive && (targetPawn.mindState.duty == null || targetPawn.mindState.duty.def != DutyDefOf.AssaultColony))
+        if (lord is { LordJob: LordJob_DefendAndExpandHive } && (targetPawn.mindState.duty == null || targetPawn.mindState.duty.def != DutyDefOf.AssaultColony))
             return false;
 
-        if (targetPawn != null && targetPawn.IsPrisoner)
+        if (targetPawn is { IsPrisoner: true })
             return false;
         
         CompCanBeDormant compCanBeDormant = target.Thing.TryGetComp<CompCanBeDormant>();
-        if (compCanBeDormant != null && !compCanBeDormant.Awake)
+        if (compCanBeDormant is { Awake: false })
             return false;
         
         CompInitiatable compInit = target.Thing.TryGetComp<CompInitiatable>();
-        if (compInit != null && !compInit.Initiated)
+        if (compInit is { Initiated: false })
             return false;
-        
-        if (target.Thing.Spawned)
-        {
-            TraverseParms traverseParms = targetPawn != null 
-                ? TraverseParms.For(targetPawn)
-                : TraverseParms.For(TraverseMode.PassDoors);
-            if (!target.Thing.Map.reachability.CanReachUnfogged(target.Thing.Position, traverseParms))
-                return false;
-        }
 
-        return true;
+        if (!target.Thing.Spawned) return true;
+        TraverseParms traverseParms = targetPawn != null 
+            ? TraverseParms.For(targetPawn)
+            : TraverseParms.For(TraverseMode.PassDoors);
+        return target.Thing.Map.reachability.CanReachUnfogged(target.Thing.Position, traverseParms);
     }
 }

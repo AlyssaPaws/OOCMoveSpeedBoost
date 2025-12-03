@@ -6,6 +6,7 @@ namespace OOCMoveSpeedBoost;
 public class Settings : ModSettings
 {
     public static float speedBoostMult = 3f;
+    public static float combatSpeedMult = 1f;
     public static bool showBoostToggle = true;
     public static bool boostToggle = true;
     public static bool manualReactivation;
@@ -16,6 +17,7 @@ public class Settings : ModSettings
     {
         base.ExposeData();
         Scribe_Values.Look(ref speedBoostMult, "speedBoostMult", 3f, true);
+        Scribe_Values.Look(ref combatSpeedMult, "combatSpeedMult", 1f, true);
         Scribe_Values.Look(ref showBoostToggle, "showBoostToggle", true, true);
         Scribe_Values.Look(ref boostToggle, "speedBoostToggle", true, true);
         Scribe_Values.Look(ref manualReactivation, "manualReactivation", forceSave: true);

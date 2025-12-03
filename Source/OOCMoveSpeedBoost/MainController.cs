@@ -11,8 +11,9 @@ public static class MainController
     public static bool refreshTicks;
     public static bool inCombat;
     public static float mult = Settings.speedBoostMult;
+    public static float combatMult = Settings.combatSpeedMult;
     
-    public static string ManualToggleTooltip = "OOCMSB.BoostToggle.Tooltip".Translate(Settings.speedBoostMult.ToString(CultureInfo.CurrentCulture));
+    public static string ManualToggleTooltip = "OOCMSB.BoostToggle.TT".Translate(Settings.speedBoostMult.ToString(CultureInfo.CurrentCulture), Settings.combatSpeedMult.ToString(CultureInfo.CurrentCulture));
 
     public static void ForceSlow()
     {
@@ -20,7 +21,7 @@ public static class MainController
         {
             if (Settings.manualReactivation) Settings.boostToggle = false;
             inCombat = true;
-            mult = 1f;
+            mult = combatMult;
             
            if (Settings.onOffNotification) Messages.Message("OOCMSB.Message.SpeedBoostDisabled".Translate(), MessageTypeDefOf.SilentInput);
         }

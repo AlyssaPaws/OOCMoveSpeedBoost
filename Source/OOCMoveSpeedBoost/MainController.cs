@@ -17,6 +17,8 @@ public static class MainController
 
     public static void ForceSlow()
     {
+        if (Settings.manualOverride) return;
+        
         if (!inCombat)
         {
             if (Settings.manualReactivation) Settings.boostToggle = false;
@@ -35,5 +37,19 @@ public static class MainController
         mult = Settings.speedBoostMult;
         
         if (Settings.onOffNotification && !Settings.manualReactivation) Messages.Message("OOCMSB.Message.SpeedBoostReEnabled".Translate(), MessageTypeDefOf.SilentInput);
+    }
+
+    public static void ManualOverride()
+    {
+        Settings.manualOverride = !Settings.manualOverride;
+
+        mult = Settings.manualOverride switch
+        {
+            true when inCombat => Settings.speedBoostMult,
+            false when inCombat => Settings.combatSpeedMult,
+            _ => mult
+        };
+        
+        Messages.Message("OOCMSB.Message.ManualOverrideToggle".Translate(Settings.manualOverride ? "on" : "off"), MessageTypeDefOf.SilentInput);
     }
 }

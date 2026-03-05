@@ -6,4 +6,11 @@
 		<label>Toggle Speed Boost</label>
 		<defaultKeyCodeA>Alpha5</defaultKeyCodeA>
 	</KeyBindingDef>
+	
+	<KeyBindingDef>
+		<category>MUR_OOCSpeedBoost</category>
+		<defName>MUR_ManualOverride</defName>
+		<label>Manual Override</label>
+		<!--<defaultKeyCodeA>Alpha5</defaultKeyCodeA>-->
+	</KeyBindingDef>
 </Defs>

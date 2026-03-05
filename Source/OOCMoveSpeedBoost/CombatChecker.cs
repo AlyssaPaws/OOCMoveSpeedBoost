@@ -40,26 +40,19 @@ public class CombatChecker : GameComponent
         MainController.Resume();
     }
 
-    private bool NotSafeToBoost()
+    private static bool NotSafeToBoost()
     {
         foreach (Map map in Find.Maps)
         {
             if (CustomGenHostility.AnyHostileActiveThreatToPlayer(map))
                 return true;
+            
             if (!Settings.disableWhenDrafted) continue;
+            
             if (Enumerable.Any(map.mapPawns.FreeColonistsSpawned, pawn => pawn.Drafted))
-            {
                 return true;
-            }
         }
 
         return false;
-    }
-
-    public void RefreshCountdown()
-    {
-        if (!MainController.inCombat)
-            return;
-        _checkCombatTicks = MainController.checkCombatTicks;
     }
 }

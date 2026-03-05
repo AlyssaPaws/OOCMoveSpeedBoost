@@ -3,7 +3,7 @@
 <Defs>
 	<KeyBindingCategoryDef>
 		<defName>MUR_OOCSpeedBoost</defName>
-		<label>Toggle OOC Speed boost effect</label>
-		<description>A shortcut that toggles the out of combat move speed effect.</description>
+		<label>Out of Combat Move Speed Boost</label>
+		<description>Keybindings for OOCMoveSpeedBoost</description>
 	</KeyBindingCategoryDef>
 </Defs>

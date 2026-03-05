@@ -3,6 +3,7 @@
     <!--Notification Messages-->
     <OOCMSB.Message.SpeedBoostDisabled>Disabled move speed multiplier</OOCMSB.Message.SpeedBoostDisabled>
     <OOCMSB.Message.SpeedBoostReEnabled>Re-enabled move speed multiplier</OOCMSB.Message.SpeedBoostReEnabled>
+	<OOCMSB.Message.ManualOverrideToggle>Manual override is {0}</OOCMSB.Message.ManualOverrideToggle>
     
     <!--SettingsCategory-->
     <OOCMSB.Title>Out Of Combat Move Speed Boost</OOCMSB.Title>

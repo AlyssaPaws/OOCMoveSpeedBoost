@@ -19,18 +19,24 @@ public static class AttackTargetFinder_BestAttackTarget_Patch
     {
         if (__result == null || __result.Thing.Faction != Faction.OfPlayer)
             return;
-        MainController.ForceSlow();
+        
+        MainController.ForceSlowForMap(__result.Thing.Map);
     }
 }
 
-[HarmonyPatch(typeof(Pawn_PathFollower), "CostToMoveIntoCell", new System.Type[] { typeof(Pawn), typeof(IntVec3) })]
+[HarmonyPatch(typeof(Pawn_PathFollower), "CostToMoveIntoCell", typeof(Pawn), typeof(IntVec3))]
 public class Pawn_PathFollower_CostToMoveIntoCell_Patch
 {
     private static void Postfix(Pawn pawn, IntVec3 c, ref float __result)
     {
         if (!Settings.boostToggle)
             return;
-        __result /= MainController.mult;
+
+        Map map = pawn.Map;
+        if (map == null) return;
+        
+        float mult = CombatChecker.IsCombatActive(map) ? Settings.combatSpeedMult : Settings.speedBoostMult;
+        __result /= mult;
     }
 }
 
@@ -39,9 +45,9 @@ public static class Pawn_TryStartAttack_Patch
 {
     private static void Postfix(bool __result, ref Pawn __instance)
     {
-        if (!__result || __instance.Faction != Faction.OfPlayer)
-            return;
-        MainController.ForceSlow();
+        if (!__result || __instance.Faction != Faction.OfPlayer) return;
+        
+        MainController.ForceSlowForMap(__instance.Map);
     }
 }
 
@@ -52,7 +58,7 @@ public static class PawnDraftController_Drafted_Patch
     {
         if (!__instance.Drafted || !Settings.disableWhenDrafted) return;
         
-        MainController.ForceSlow();
+        MainController.ForceSlowForMap(__instance.pawn.Map);
     }
 }
 
@@ -63,11 +69,11 @@ public static class PlaySettings_DoPlaySettingsGlobalControls_Patch
     {
         if (!Settings.showBoostToggle)
             return;
-        row.ToggleableIcon(ref Settings.boostToggle, Resources.boostToggleIcon, MainController.ManualToggleTooltip, SoundDefOf.Mouseover_ButtonToggle);
+        row.ToggleableIcon(ref Settings.boostToggle, Resources.boostToggleIcon, Resources.ManualToggleTooltip, SoundDefOf.Mouseover_ButtonToggle);
     }
 }
 
-[HarmonyPatch(typeof(TimeSlower), nameof(TimeSlower.SignalForceNormalSpeed))]
+/*[HarmonyPatch(typeof(TimeSlower), nameof(TimeSlower.SignalForceNormalSpeed))]
 public class TimeSlower_SignalForceNormalSpeed_Patch
 {
     private static void Postfix() => MainController.ForceSlow();
@@ -77,7 +83,7 @@ public class TimeSlower_SignalForceNormalSpeed_Patch
 public class TimeSlower_SignalForceNormalSpeedShort_Patch
 {
     private static void Postfix() => MainController.ForceSlow();
-}
+}*/
 
 [HarmonyPatch(typeof(UIRoot), nameof(UIRoot.UIRootOnGUI))]
 public static class UIRoot_UIRootOnGUI_Patch

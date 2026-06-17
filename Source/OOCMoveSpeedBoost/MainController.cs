@@ -2,54 +2,61 @@
 using System.Globalization;
 using RimWorld;
 using Verse;
+using Verse.Sound;
 
 namespace OOCMoveSpeedBoost;
 
 public static class MainController
 {
-    public static int checkCombatTicks = 300;
+    public static int checkCombatTicks = 600;
     public static bool refreshTicks;
-    public static bool inCombat;
-    public static float mult = Settings.speedBoostMult;
-    public static float combatMult = Settings.combatSpeedMult;
+
+    public static void ForceSlowForMap(Map map)
+    {
+        if (map == null) { Log.Error("[OOC Move Speed Boost] Tried toggling speed multiplier for null map."); return; }
+
+        if (CombatChecker.IsManualOverride(map)) return;
+        if (CombatChecker.IsCombatActive(map)) return;
+        
+        CombatChecker.SetCombatState(map, true);
+        
+        if (Settings.onOffNotification && Find.CurrentMap == map) Messages.Message(Resources.BoostDisabledStr, MessageTypeDefOf.SilentInput, false);
+    }
+
+    public static void ResumeForMap(Map map, bool manualReactivationMode = false)
+    {
+        if (map == null) { Log.Error("[OOC Move Speed Boost] Tried toggling speed multiplier for null map."); return; }
+
+        if (!CombatChecker.IsCombatActive(map)) return;
+        if (Settings.manualReactivation && !manualReactivationMode) return;
+        
+        CombatChecker.SetCombatState(map, false);
+        
+        if (Settings.onOffNotification && Find.CurrentMap == map) Messages.Message(Resources.BoostReEnabledStr, MessageTypeDefOf.SilentInput, false);
+    }
     
-    public static string ManualToggleTooltip = "OOCMSB.BoostToggle.TT".Translate(Settings.speedBoostMult.ToString(CultureInfo.CurrentCulture), Settings.combatSpeedMult.ToString(CultureInfo.CurrentCulture));
-
-    public static void ForceSlow()
+    public static void ManualOverride(Map map)
     {
-        if (Settings.manualOverride) return;
+        bool currentOverride = CombatChecker.IsManualOverride(map);
         
-        if (!inCombat)
-        {
-            if (Settings.manualReactivation) Settings.boostToggle = false;
-            inCombat = true;
-            mult = combatMult;
-            
-           if (Settings.onOffNotification) Messages.Message("OOCMSB.Message.SpeedBoostDisabled".Translate(), MessageTypeDefOf.SilentInput);
-        }
-        else
-            refreshTicks = true;
+        CombatChecker.SetManualOverride(map, !currentOverride);
+        
+        Messages.Message("OOCMSB.Message.ManualOverrideToggle".Translate(!currentOverride ? Resources.OnKeyStr : Resources.OffKeyStr), MessageTypeDefOf.SilentInput, false);
     }
 
-    public static void Resume()
+    public static void ManualReactivation(Map map)
     {
-        inCombat = false;
-        mult = Settings.speedBoostMult;
+        if (!Settings.manualReactivation || !CombatChecker.IsCombatActive(map)) return;
+        if (CombatChecker.AnyPawnsDrafted(map)) return;
         
-        if (Settings.onOffNotification && !Settings.manualReactivation) Messages.Message("OOCMSB.Message.SpeedBoostReEnabled".Translate(), MessageTypeDefOf.SilentInput);
+        ResumeForMap(map, true);
     }
 
-    public static void ManualOverride()
+    public static void MainToggle()
     {
-        Settings.manualOverride = !Settings.manualOverride;
+        Settings.boostToggle = !Settings.boostToggle;
 
-        mult = Settings.manualOverride switch
-        {
-            true when inCombat => Settings.speedBoostMult,
-            false when inCombat => Settings.combatSpeedMult,
-            _ => mult
-        };
-        
-        Messages.Message("OOCMSB.Message.ManualOverrideToggle".Translate(Settings.manualOverride ? "on" : "off"), MessageTypeDefOf.SilentInput);
+        SoundDef sound = Settings.boostToggle ? SoundDefOf.Checkbox_TurnedOn : SoundDefOf.Checkbox_TurnedOff;
+        sound.PlayOneShotOnCamera();
     }
 }

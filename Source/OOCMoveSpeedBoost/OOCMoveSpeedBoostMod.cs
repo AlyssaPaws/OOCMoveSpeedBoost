@@ -19,7 +19,7 @@ public class OOCMoveSpeedBoostMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        Listing_Standard lsHeader1 = new Listing_Standard();
+        Listing_Standard lsHeader1 = new();
         
         /*ListingStandared - Header 1*/
         lsHeader1.Begin(new Rect(inRect.x, inRect.y, inRect.width, 40f));
@@ -29,7 +29,7 @@ public class OOCMoveSpeedBoostMod : Mod
         /*------------------------*/
         
         /*ListingStandard - SpeedMultiplier*/
-        Listing_Standard lsSpeedMult = new Listing_Standard();
+        Listing_Standard lsSpeedMult = new();
         lsSpeedMult.Begin(new Rect(inRect.x, inRect.y + 40f, 500f, 30f));
         
         double num = lsSpeedMult.SliderLabeled("OOCMSB.NonCombatSpeedMult.Label".Translate()+ $": {Math.Round(Settings.speedBoostMult, 1)}", Settings.speedBoostMult, 0.1f, 10f, tooltip: "OOCMSB.NonCombatSpeedMult.TT".Translate());
@@ -40,7 +40,7 @@ public class OOCMoveSpeedBoostMod : Mod
         /*-----------------------*/
         
         /*ListingStandard - Check boxes section*/
-        Listing_Standard lsCheckboxes = new Listing_Standard();
+        Listing_Standard lsCheckboxes = new();
         lsCheckboxes.Begin(new Rect(inRect.x, inRect.y + 80f, 480f, 150f));
         lsCheckboxes.verticalSpacing = 10f;
         
@@ -53,7 +53,7 @@ public class OOCMoveSpeedBoostMod : Mod
         /*----------------------------------*/
         
         /*ListingStandard - Advanced settings header*/
-        Listing_Standard lsHeader2 = new Listing_Standard();
+        Listing_Standard lsHeader2 = new();
         lsHeader2.Begin(new Rect(inRect.x, inRect.y + 240f, inRect.width, 40f));
         lsHeader2.Label("OOCMSB.Advanced.Header".Translate());
         lsHeader2.GapLine();
@@ -61,17 +61,17 @@ public class OOCMoveSpeedBoostMod : Mod
         /*--------------------------------*/
         
         /*ListingStandard - combat speed multiplier*/
-        Listing_Standard lsCombatSpeedMult = new Listing_Standard();
-        lsCombatSpeedMult.Begin(new Rect(inRect.x, inRect.y + 280f, 500f, 30f));
+        Listing_Standard lsSecAdvanced = new();
+        lsSecAdvanced.Begin(new Rect(inRect.x, inRect.y + 280f, 500f, 30f));
 
-        double num2 = lsCombatSpeedMult.SliderLabeled("OOCMSB.CombatSpeedMult.Label".Translate()+ $": {Math.Round(Settings.combatSpeedMult, 1)}", Settings.combatSpeedMult, 0.1f, 10f, tooltip: "OOCMSB.CombatSpeedMult.TT".Translate());
+        double num2 = lsSecAdvanced.SliderLabeled("OOCMSB.CombatSpeedMult.Label".Translate()+ $": {Math.Round(Settings.combatSpeedMult, 1)}", Settings.combatSpeedMult, 0.1f, 10f, tooltip: "OOCMSB.CombatSpeedMult.TT".Translate());
         num2 = Math.Round(num2, 1);
         Settings.combatSpeedMult = (float)num2;
         
         lsSpeedMult.End();
         /*------------------*/
         
-        Listing_Standard lsResetToDefault = new Listing_Standard();
+        Listing_Standard lsResetToDefault = new();
         lsResetToDefault.Begin(new Rect(inRect.x, inRect.height - 40f, inRect.width, 40f));
         if (lsResetToDefault.ButtonText("OOCMSB.ResetValues.btn".Translate()))
         {
@@ -92,8 +92,6 @@ public class OOCMoveSpeedBoostMod : Mod
     {
         base.WriteSettings();
         
-        if (!MainController.inCombat && Settings.boostToggle) MainController.mult = Settings.speedBoostMult;
-        MainController.combatMult = Settings.combatSpeedMult;
-        MainController.ManualToggleTooltip = "OOCMSB.BoostToggle.TT".Translate(Settings.speedBoostMult,  Settings.combatSpeedMult);
+        Resources.ManualToggleTooltip = "OOCMSB.BoostToggle.TT".Translate(Settings.speedBoostMult,  Settings.combatSpeedMult);
     }
 }

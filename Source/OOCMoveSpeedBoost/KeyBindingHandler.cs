@@ -13,9 +13,12 @@ public static class KeyBindingHandler
             return;
         
         if (KeyBindings.MUR_ToggleBoost.KeyDownEvent)
-            Settings.boostToggle = !Settings.boostToggle;
+            MainController.MainToggle();
 
         if (KeyBindings.MUR_ManualOverride.KeyDownEvent)
-            MainController.ManualOverride();
+            MainController.ManualOverride(Find.CurrentMap);
+        
+        if (KeyBindings.MUR_ManualReactivation.KeyDownEvent)
+            MainController.ManualReactivation(Find.CurrentMap);
     }
 }

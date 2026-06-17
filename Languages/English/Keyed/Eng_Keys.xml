@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
     <!--Notification Messages-->
-    <OOCMSB.Message.SpeedBoostDisabled>Disabled move speed multiplier</OOCMSB.Message.SpeedBoostDisabled>
-    <OOCMSB.Message.SpeedBoostReEnabled>Re-enabled move speed multiplier</OOCMSB.Message.SpeedBoostReEnabled>
-	<OOCMSB.Message.ManualOverrideToggle>Manual override is {0}</OOCMSB.Message.ManualOverrideToggle>
+    <OOCMSB.Message.SpeedBoostDisabled>Disabled move speed multiplier for current map.</OOCMSB.Message.SpeedBoostDisabled>
+    <OOCMSB.Message.SpeedBoostReEnabled>Re-enabled move speed multiplier for current map.</OOCMSB.Message.SpeedBoostReEnabled>
+	
+	<OOCMSB.Message.ManualOverrideToggle>Move speed manual override is {0} for current map.</OOCMSB.Message.ManualOverrideToggle>
+	
+	<OOCMSB.Message.MainToggle>Move speed multiplier is now {0}</OOCMSB.Message.MainToggle>
+	
+	<OOCMSB.On>on</OOCMSB.On>
+	<OOCMSB.Off>off</OOCMSB.Off>
     
     <!--SettingsCategory-->
     <OOCMSB.Title>Out Of Combat Move Speed Boost</OOCMSB.Title>
@@ -14,19 +20,19 @@
     <OOCMSB.NonCombatSpeedMult.Label>Non-Combat Speed Multiplier</OOCMSB.NonCombatSpeedMult.Label>
     <OOCMSB.NonCombatSpeedMult.TT>All pawns' movement speed will be multiplied by this value outside of combat.</OOCMSB.NonCombatSpeedMult.TT>
     <OOCMSB.CombatSpeedMult.Label>Combat Speed Multiplier</OOCMSB.CombatSpeedMult.Label>
-    <OOCMSB.CombatSpeedMult.TT>Speed multiplier applied while combat is active.\n\nRecommended to leave at 1 for regular use of this mod. (Will affect combat balance)</OOCMSB.CombatSpeedMult.TT>
-    <OOCMSB.ShowBoostToggle.Label>Show Speed Boost Toggle</OOCMSB.ShowBoostToggle.Label>
-    <OOCMSB.ShowBoostToggle.TT>Show a button on the UI (bottom right) to manually toggle the effect.</OOCMSB.ShowBoostToggle.TT>
+    <OOCMSB.CombatSpeedMult.TT>Speed multiplier applied while combat is active / when the speed boost effect is disabled.\n\nRecommended to leave at 1 for regular use of this mod.</OOCMSB.CombatSpeedMult.TT>
+    <OOCMSB.ShowBoostToggle.Label>Show main toggle button</OOCMSB.ShowBoostToggle.Label>
+    <OOCMSB.ShowBoostToggle.TT>Show a button on the bottom right which allows for disabling the speed multiplier. Affects all maps.</OOCMSB.ShowBoostToggle.TT>
     <OOCMSB.ManualReactivation.Label>Manual Reactivation</OOCMSB.ManualReactivation.Label>
-    <OOCMSB.ManualReactivation.TT>The effect will stay disabled after combat until manually re-enabled.</OOCMSB.ManualReactivation.TT>
+    <OOCMSB.ManualReactivation.TT>If the speed multiplier is disabled on a map, require manual reactivation via the associated keybind.</OOCMSB.ManualReactivation.TT>
     <OOCMSB.DraftedDisable.Label>Disable When Drafted</OOCMSB.DraftedDisable.Label>
-    <OOCMSB.DraftedDisable.TT>Disable out of combat move speed boost when any colonists are drafted.</OOCMSB.DraftedDisable.TT>
+    <OOCMSB.DraftedDisable.TT>Disable speed boost for a map when any colonist is drafted.</OOCMSB.DraftedDisable.TT>
     <OOCMSB.OnOffNotification.Label>Enable Notification</OOCMSB.OnOffNotification.Label>
     <OOCMSB.OnOffNotification.TT>Show a message when the effect is disabled / re-enabled.</OOCMSB.OnOffNotification.TT>
     
-    <!--Settings reset button-->
+    <!--Button labels-->
     <OOCMSB.ResetValues.btn>Reset to default</OOCMSB.ResetValues.btn>
     
     <!--Widget button Tooltip-->
-    <OOCMSB.BoostToggle.TT>Toggle pawn movement speed multipliers.</OOCMSB.BoostToggle.TT>
+    <OOCMSB.BoostToggle.TT>Toggle pawn movement speed multiplier. Disables the speed multiplier for all maps. \n\nBoost multiplier: {0}x\nCombat multiplier: {1}x</OOCMSB.BoostToggle.TT>
 </LanguageData>

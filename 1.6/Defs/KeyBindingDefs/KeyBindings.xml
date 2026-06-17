@@ -11,6 +11,13 @@
 		<category>MUR_OOCSpeedBoost</category>
 		<defName>MUR_ManualOverride</defName>
 		<label>Manual Override</label>
-		<!--<defaultKeyCodeA>Alpha5</defaultKeyCodeA>-->
+		<defaultKeyCodeA>Alpha6</defaultKeyCodeA>
+	</KeyBindingDef>
+
+	<KeyBindingDef>
+		<category>MUR_OOCSpeedBoost</category>
+		<defName>MUR_ManualReactivation</defName>
+		<label>Manual Reactivation</label>
+		<defaultKeyCodeA>Alpha7</defaultKeyCodeA>
 	</KeyBindingDef>
 </Defs>

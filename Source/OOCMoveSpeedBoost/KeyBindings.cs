@@ -12,4 +12,6 @@ public static class KeyBindings
     public static KeyBindingDef MUR_ToggleBoost;
 
     public static KeyBindingDef MUR_ManualOverride;
+
+    public static KeyBindingDef MUR_ManualReactivation;
 }

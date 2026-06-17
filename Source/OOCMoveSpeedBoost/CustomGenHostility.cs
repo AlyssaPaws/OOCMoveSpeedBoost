@@ -28,7 +28,7 @@ public static class CustomGenHostility
             if (!IsActiveThreatTo(target, faction))
             {
                 if (!countDormantPawnsAsHostile || !target.Thing.HostileTo(faction) || target.Thing.Fogged() ||
-                    target.ThreatDisabled((IAttackTargetSearcher)null) || target.Thing is not Pawn thing) continue;
+                    target.ThreatDisabled(null) || target.Thing is not Pawn thing) continue;
 
                 CompCanBeDormant comp = thing.GetComp<CompCanBeDormant>();
 
@@ -47,7 +47,7 @@ public static class CustomGenHostility
     {
         Pawn targetPawn = target.Thing as Pawn;
         
-        if (!target.Thing.HostileTo(faction) || target.Thing is not IAttackTargetSearcher || target.ThreatDisabled((IAttackTargetSearcher)null))
+        if (!target.Thing.HostileTo(faction) || target.Thing is not IAttackTargetSearcher || target.ThreatDisabled(null))
             return false;
 
         Lord lord = targetPawn?.GetLord();

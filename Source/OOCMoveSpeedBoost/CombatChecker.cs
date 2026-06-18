@@ -79,12 +79,21 @@ public class CombatChecker : GameComponent
 
     private static bool IsSafeToBoost(Map map)
     {
-        if (CustomGenHostility.AnyHostileActiveThreatToPlayer(map))
+        if (HostilityChecker.AnyThreatToPlayer(map))
             return false;
 
         if (!Settings.disableWhenDrafted) return true;
 
         return !AnyPawnsDrafted(map);
+    }
+
+    public static void ForceSlowCheckMaps()
+    {
+        foreach (Map map in Find.Maps.ToList())
+        {
+            if (HostilityChecker.AnyThreatToPlayer(map))
+                MainController.ForceSlowForMap(map);
+        }
     }
     
     public static bool IsCombatActive(Map map) => _boostDict.GetValueOrDefault(map, false);

@@ -73,17 +73,17 @@ public static class PlaySettings_DoPlaySettingsGlobalControls_Patch
     }
 }
 
-/*[HarmonyPatch(typeof(TimeSlower), nameof(TimeSlower.SignalForceNormalSpeed))]
+[HarmonyPatch(typeof(TimeSlower), nameof(TimeSlower.SignalForceNormalSpeed))]
 public class TimeSlower_SignalForceNormalSpeed_Patch
 {
-    private static void Postfix() => MainController.ForceSlow();
+    private static void Postfix() => CombatChecker.ForceSlowCheckMaps();
 }
 
 [HarmonyPatch(typeof(TimeSlower), nameof(TimeSlower.SignalForceNormalSpeedShort))]
 public class TimeSlower_SignalForceNormalSpeedShort_Patch
 {
-    private static void Postfix() => MainController.ForceSlow();
-}*/
+    private static void Postfix() => CombatChecker.ForceSlowCheckMaps();
+}
 
 [HarmonyPatch(typeof(UIRoot), nameof(UIRoot.UIRootOnGUI))]
 public static class UIRoot_UIRootOnGUI_Patch

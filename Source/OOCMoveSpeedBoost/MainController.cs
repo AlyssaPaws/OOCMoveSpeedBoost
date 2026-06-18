@@ -8,7 +8,7 @@ namespace OOCMoveSpeedBoost;
 
 public static class MainController
 {
-    public static int checkCombatTicks = 600;
+    public static int checkCombatTicks = 1200;
     public static bool refreshTicks;
 
     public static void ForceSlowForMap(Map map)
